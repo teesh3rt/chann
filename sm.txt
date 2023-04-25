@@ -1,0 +1,3 @@
+This is the default server message.
+You may want to change this to your rules or other resources.
+To edit this, edit the <i><b>sm.txt</b></i> file!

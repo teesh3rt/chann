@@ -1,0 +1,30 @@
+<div id="body">
+    <h1>{{ cn }} - /{{ cs }}/</h1>
+    <p>
+        {{ cd }}
+    </p>
+    <br>
+    <p><a href="/{{ cs }}/new">Create new post</a> &ndash; <a href="" onclick="location.reload()">Refresh</a></p>
+    <br><br>
+    <div id="posts"></div>
+</div>
+<script>
+    async function fetch_posts() {
+        let chans = document.getElementById("posts")
+        let res = await (await (fetch("/{{ cs }}/posts"))).json()
+        for (let c in res) {
+            let title = res[c].title
+            let content = res[c].content
+            content = content.replace(/\n/g, '<br>\n');
+            chans.innerHTML += `
+            <div>
+                <h1>${title}</h1>
+                <p>${content}</p>
+            </div>
+            <br>
+            `
+        }
+    }
+
+    fetch_posts()
+</script>

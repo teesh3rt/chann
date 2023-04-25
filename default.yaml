@@ -1,0 +1,7 @@
+channels:
+  d:
+    name: Default
+    desc: Please change this in <b><i>default.yaml</i></b>!
+
+undermsg: Default undermsg
+servername: Default server name

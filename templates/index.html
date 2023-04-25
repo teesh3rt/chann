@@ -1,0 +1,31 @@
+<div id="body">
+    <p id="msg"></p>
+   <div id="chans"></div>
+</div>
+<script defer>
+    async function fetch_chans() {
+        let chans = document.getElementById("chans")
+        let res = await (await (fetch("/chans"))).json()
+        for (let c in res) {
+            let cs = c
+            let cn = res[c].name
+            let cd = res[c].desc
+            chans.innerHTML += `
+            <div>
+                <h1>${cn} - /${cs}/</h1>
+                <p>${cd} &mdash; <a href="/${cs}">Go To</p>
+            </div>
+            <br>
+            `
+        }
+    }
+
+    async function fetch_msg() {
+        let msg = document.getElementById("msg")
+        let res = await (await (fetch("/sm"))).text()
+        msg.innerHTML = res.replace(/\n/g, '<br>\n');
+    }
+
+    fetch_chans()
+    fetch_msg()
+</script>
